@@ -1,0 +1,38 @@
+{
+  "tabScan": "Bluetooth-Einstellungen",
+  "tabDevices": "Geräte",
+  "tabReconnect": "Reconnect",
+
+  "hciDevice": "HCI-Geräte-Index",
+  "hciDeviceTooltip": "Bluetooth-Adapter-Index (0 = /dev/hci0)",
+
+  "transport": "Transport-Modus",
+  "transportTooltip": "Welcher Bluetooth-Transport für die Suche genutzt wird. 'Auto' scannt sowohl Classic- als auch BLE-Geräte.",
+  "transportAuto": "Auto (Classic + BLE)",
+  "transportLE": "Nur BLE",
+  "transportBREDR": "Nur Classic (BR/EDR)",
+
+  "autoConnect": "Automatisch verbinden",
+  "autoConnectTooltip": "Wenn aktiviert, wird automatisch eine Verbindung zu Geräten der Allowlist hergestellt.",
+
+  "discoverHeader": "Gerät hinzufügen",
+  "discoverInfo": "Wähle ein entdecktes Bluetooth-Gerät aus der Dropdown-Liste und klicke 'Hinzufügen'. Gepaarte Geräte werden automatisch erkannt.",
+  "selectDevice": "Gerät auswählen",
+  "addDevice": "Hinzufügen",
+
+  "allowlistHeader": "Geräteliste",
+  "allowlistInfo": "Verwaltete Bluetooth-Geräte. Nur Geräte in dieser Liste erhalten ioBroker-Objekte und werden überwacht.",
+  "macAddress": "MAC-Adresse",
+  "deviceName": "Name",
+  "deviceType": "Typ",
+  "typeAuto": "Auto",
+  "typeClassic": "Classic",
+  "typeBLE": "BLE",
+  "autoConnectCol": "Auto-Connect",
+
+  "reconnectEnabled": "Automatischen Reconnect aktivieren",
+  "reconnectBaseDelay": "Basis-Verzögerung (Sekunden)",
+  "reconnectBaseDelayTooltip": "Anfängliche Reconnect-Verzögerung – verdoppelt sich mit jedem Versuch",
+  "reconnectMaxDelay": "Maximale Verzögerung (Sekunden)",
+  "reconnectMaxDelayTooltip": "Maximale Zeit zwischen Reconnect-Versuchen"
+}

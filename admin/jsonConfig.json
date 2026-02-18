@@ -1,0 +1,181 @@
+{
+  "i18n": true,
+  "type": "tabs",
+  "items": {
+    "tabDevices": {
+      "type": "panel",
+      "label": "tabDevices",
+      "items": {
+        "_headerDiscover": {
+          "type": "header",
+          "text": "discoverHeader",
+          "size": 4,
+          "sm": 12,
+          "newLine": true
+        },
+        "_infoDiscover": {
+          "type": "staticText",
+          "text": "discoverInfo",
+          "sm": 12,
+          "style": { "marginBottom": 12 }
+        },
+        "_deviceSelect": {
+          "type": "selectSendTo",
+          "command": "getDiscoveredDevices",
+          "label": "selectDevice",
+          "sm": 8,
+          "newLine": true,
+          "noTranslation": true,
+          "alsoDependsOn": ["allowlist"]
+        },
+        "_addSelected": {
+          "type": "sendTo",
+          "command": "addToAllowlist",
+          "jsonData": "{\"mac\": \"${data._deviceSelect}\"}",
+          "label": "addDevice",
+          "icon": "add",
+          "variant": "contained",
+          "useNative": true,
+          "showProcess": true,
+          "sm": 4,
+          "newLine": false
+        },
+        "_divider1": {
+          "type": "divider",
+          "sm": 12,
+          "style": { "marginTop": 16, "marginBottom": 16 }
+        },
+        "_headerAllowlist": {
+          "type": "header",
+          "text": "allowlistHeader",
+          "size": 4,
+          "sm": 12,
+          "newLine": true
+        },
+        "_infoAllowlist": {
+          "type": "staticText",
+          "text": "allowlistInfo",
+          "sm": 12,
+          "style": { "marginBottom": 8 }
+        },
+        "allowlist": {
+          "type": "table",
+          "label": "",
+          "sm": 12,
+          "items": [
+            {
+              "attr": "mac",
+              "type": "text",
+              "title": "macAddress",
+              "width": "30%",
+              "filter": false,
+              "sort": true
+            },
+            {
+              "attr": "name",
+              "type": "text",
+              "title": "deviceName",
+              "width": "30%",
+              "filter": false,
+              "sort": false
+            },
+            {
+              "attr": "type",
+              "type": "select",
+              "title": "deviceType",
+              "width": "15%",
+              "options": [
+                { "label": "typeAuto", "value": "auto" },
+                { "label": "typeClassic", "value": "classic" },
+                { "label": "typeBLE", "value": "ble" }
+              ],
+              "default": "auto",
+              "filter": false,
+              "sort": false
+            },
+            {
+              "attr": "autoConnect",
+              "type": "checkbox",
+              "title": "autoConnectCol",
+              "width": "12%",
+              "default": true,
+              "filter": false,
+              "sort": false
+            }
+          ],
+          "default": []
+        }
+      }
+    },
+    "tabScan": {
+      "type": "panel",
+      "label": "tabScan",
+      "items": {
+        "hciDevice": {
+          "type": "number",
+          "label": "hciDevice",
+          "tooltip": "hciDeviceTooltip",
+          "default": 0,
+          "min": 0,
+          "max": 9,
+          "sm": 6,
+          "newLine": true
+        },
+        "transport": {
+          "type": "select",
+          "label": "transport",
+          "tooltip": "transportTooltip",
+          "default": "auto",
+          "options": [
+            { "label": "transportAuto", "value": "auto" },
+            { "label": "transportLE", "value": "le" },
+            { "label": "transportBREDR", "value": "bredr" }
+          ],
+          "sm": 6
+        },
+        "autoConnect": {
+          "type": "checkbox",
+          "label": "autoConnect",
+          "tooltip": "autoConnectTooltip",
+          "default": true,
+          "sm": 12,
+          "newLine": true
+        }
+      }
+    },
+    "tabReconnect": {
+      "type": "panel",
+      "label": "tabReconnect",
+      "items": {
+        "reconnectEnabled": {
+          "type": "checkbox",
+          "label": "reconnectEnabled",
+          "default": true,
+          "sm": 12,
+          "newLine": true
+        },
+        "reconnectBaseDelay": {
+          "type": "number",
+          "label": "reconnectBaseDelay",
+          "tooltip": "reconnectBaseDelayTooltip",
+          "default": 5,
+          "min": 1,
+          "max": 60,
+          "sm": 6,
+          "newLine": true,
+          "hidden": "!data.reconnectEnabled"
+        },
+        "reconnectMaxDelay": {
+          "type": "number",
+          "label": "reconnectMaxDelay",
+          "tooltip": "reconnectMaxDelayTooltip",
+          "default": 300,
+          "min": 10,
+          "max": 3600,
+          "sm": 6,
+          "hidden": "!data.reconnectEnabled"
+        }
+      }
+    }
+  }
+}

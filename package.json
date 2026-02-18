@@ -1,0 +1,56 @@
+{
+  "name": "iobroker.bluetooth",
+  "version": "0.2.1",
+  "description": "Bluetooth adapter for ioBroker – discover, connect, pair and interact with Classic Bluetooth and BLE devices via BlueZ/D-Bus",
+  "author": {
+    "name": "Skeletor-ai",
+    "email": "skeletor-ai@all-smart.net"
+  },
+  "homepage": "https://github.com/Skeletor-ai/ioBroker.bluetooth",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "bluetooth",
+    "BLE",
+    "classic",
+    "BlueZ",
+    "D-Bus",
+    "GATT",
+    "smart home",
+    "IoT"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skeletor-ai/ioBroker.bluetooth.git"
+  },
+  "os": [
+    "linux"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@iobroker/adapter-core": "^3.2.6",
+    "dbus-next": "^0.10.2",
+    "usocket": "^1.0.2"
+  },
+  "devDependencies": {
+    "@iobroker/dev-server": "^0.8.0"
+  },
+  "main": "main.js",
+  "files": [
+    "admin/",
+    "lib/",
+    "main.js",
+    "io-package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0",
+    "lint": "echo \"No linter configured\" && exit 0"
+  },
+  "bugs": {
+    "url": "https://github.com/Skeletor-ai/ioBroker.bluetooth/issues"
+  }
+}

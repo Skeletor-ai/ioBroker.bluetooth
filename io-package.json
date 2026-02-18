@@ -1,0 +1,77 @@
+{
+  "common": {
+    "name": "bluetooth",
+    "version": "0.2.1",
+    "title": "Bluetooth (Classic + BLE)",
+    "titleLang": {
+      "en": "Bluetooth (Classic + BLE)",
+      "de": "Bluetooth (Classic + BLE)"
+    },
+    "desc": {
+      "en": "Discover, connect, pair and interact with Classic Bluetooth and BLE devices via BlueZ/D-Bus",
+      "de": "Classic Bluetooth und BLE Geräte über BlueZ/D-Bus erkennen, verbinden, pairen und steuern"
+    },
+    "authors": [
+      "Clawdbot <dev@clawdbot.local>"
+    ],
+    "keywords": [
+      "bluetooth",
+      "BLE",
+      "classic",
+      "BlueZ",
+      "D-Bus",
+      "GATT",
+      "BTHome",
+      "Shelly",
+      "IoT"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "bluetooth.png",
+    "enabled": true,
+    "extIcon": "",
+    "readme": "https://github.com/clawdbot/ioBroker.bluetooth/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "hardware",
+    "compact": true,
+    "messagebox": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=5.0.0"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.0.0"
+      }
+    ],
+    "news": {
+      "0.2.0": {
+        "en": "Major rewrite: replaced Noble with BlueZ/D-Bus – now supports Classic Bluetooth and BLE, device pairing, trust, connect/disconnect actions",
+        "de": "Großer Umbau: Noble durch BlueZ/D-Bus ersetzt – unterstützt jetzt Classic Bluetooth und BLE, Geräte-Pairing, Trust, Connect/Disconnect-Aktionen"
+      },
+      "0.1.0": {
+        "en": "Initial release – BLE scan, GATT read/write/notify",
+        "de": "Erstveröffentlichung – BLE Scan, GATT Lesen/Schreiben/Benachrichtigungen"
+      }
+    }
+  },
+  "native": {
+    "hciDevice": 0,
+    "transport": "auto",
+    "allowlist": [],
+    "autoConnect": true,
+    "reconnectEnabled": true,
+    "reconnectBaseDelay": 5,
+    "reconnectMaxDelay": 300
+  },
+  "objects": [],
+  "instanceObjects": []
+}
