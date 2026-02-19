@@ -28,5 +28,13 @@
   "reconnectBaseDelay": "Base delay (seconds)",
   "reconnectBaseDelayTooltip": "Initial reconnect delay — doubles with each attempt",
   "reconnectMaxDelay": "Maximum delay (seconds)",
-  "reconnectMaxDelayTooltip": "Maximum time between reconnect attempts"
+  "reconnectMaxDelayTooltip": "Maximum time between reconnect attempts",
+  "tabSatellites": "Satellites",
+  "satelliteEnabled": "Enable satellite receivers",
+  "satelliteEnabledTooltip": "Start a TCP server to accept BLE scan data from remote satellites (Raspberry Pi, ESP32)",
+  "satellitePort": "TCP Port",
+  "satellitePortTooltip": "Port for the satellite TCP server (default: 8734)",
+  "satelliteInfo": "Leave the allow list empty to accept connections from any IP. Add IPs to restrict access.",
+  "satelliteAllowFrom": "Allowed IPs",
+  "satelliteIp": "IP Address / Hostname"
 }

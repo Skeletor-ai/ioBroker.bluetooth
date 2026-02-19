@@ -69,8 +69,18 @@
     "autoConnect": true,
     "reconnectEnabled": true,
     "reconnectBaseDelay": 5,
-    "reconnectMaxDelay": 300
+    "reconnectMaxDelay": 300,
+    "satelliteEnabled": false,
+    "satellitePort": 8734,
+    "satelliteAllowFrom": []
   },
   "objects": [],
-  "instanceObjects": []
+  "instanceObjects": [
+    {
+      "_id": "satellites",
+      "type": "channel",
+      "common": { "name": "BLE Satellites" },
+      "native": {}
+    }
+  ]
 }

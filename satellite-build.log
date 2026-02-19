@@ -1,0 +1,69 @@
+2026-02-19 15:55 — Satellite Feature Build Log
+
+## Completed Tasks
+
+### 1. SatelliteManager (lib/satelliteManager.js) ✅
+- TCP server on configurable port (default 8734)
+- Multi-satellite connection management
+- JSONL parsing with line buffering
+- Ping/Pong keepalive (30s interval, 90s timeout)
+- IP allowlist filtering
+- Satellite state tracking in ioBroker (satellites.<name>.connected/lastSeen/platform)
+- EventEmitter: 'deviceFound' with normalized peripheral objects
+- 'satelliteConnected' and 'satelliteDisconnected' events
+
+### 2. main.js Integration ✅
+- SatelliteManager imported and initialized in onReady() when satelliteEnabled=true
+- deviceFound events processed via _onSatelliteDeviceFound()
+- Discovery list updated with source field
+- Advertisement data and BTHome parsing for satellite devices
+- Cleanup in onUnload()
+
+### 3. Admin Config (jsonConfig.json) ✅
+- New "tabSatellites" tab
+- satelliteEnabled checkbox (default: false)
+- satellitePort number input (default: 8734, hidden when disabled)
+- satelliteAllowFrom table with IP column
+- Info text explaining allow list behavior
+
+### 4. io-package.json ✅
+- native: satelliteEnabled, satellitePort, satelliteAllowFrom added
+- instanceObjects: satellites channel added
+
+### 5. i18n ✅
+- admin/i18n/en/translations.json: 8 new keys
+- admin/i18n/de/translations.json: 8 new keys (German translations)
+
+### 6. Pi Satellite Script (satellites/pi-satellite.js) ✅
+- Standalone Node.js BLE scanner using @stoprocent/noble
+- CLI args: --host, --port, --name, --hci
+- JSONL protocol: hello, discover, status, pong
+- Auto-reconnect on disconnect
+- Graceful shutdown (SIGINT/SIGTERM)
+- Own package.json with noble dependency
+
+### 7. ESP32 Firmware (satellites/esp32/) ✅
+- PlatformIO project with platformio.ini
+- src/main.cpp: WiFi + TCP + BLE scan (~230 lines)
+- Base64 encoding via mbedtls
+- JSON string escaping
+- Configurable via #defines
+- Continuous scan loop with server reconnect
+
+### 8. Documentation (SATELLITES.md) ✅
+- Architecture diagram
+- Setup instructions for Pi and ESP32
+- systemd service example
+- Full protocol reference with tables
+- ioBroker states documentation
+- Custom satellite example (Python)
+
+## Syntax Validation
+All files pass syntax checks:
+- lib/satelliteManager.js ✅
+- main.js ✅
+- satellites/pi-satellite.js ✅
+- io-package.json ✅
+- admin/jsonConfig.json ✅
+- admin/i18n/en/translations.json ✅
+- admin/i18n/de/translations.json ✅

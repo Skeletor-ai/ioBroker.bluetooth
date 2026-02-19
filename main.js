@@ -8,6 +8,7 @@ const AvrcpController = require('./lib/avrcpController');
 const MapClient = require('./lib/mapClient');
 const { parseAdvertisement } = require('./lib/advertisementParser');
 const { parseBTHome, findBTHomeData } = require('./lib/bthomeParser');
+const SatelliteManager = require('./lib/satelliteManager');
 
 /**
  * ioBroker.bluetooth – Bluetooth adapter (Classic + BLE via BlueZ/D-Bus)
@@ -31,6 +32,8 @@ class BluetoothAdapter extends utils.Adapter {
         this.avrcp = null;
         /** @type {MapClient|null} */
         this.map = null;
+        /** @type {SatelliteManager|null} */
+        this.satelliteMgr = null;
         this._stopping = false;
 
         /** MAC → reconnect state */
@@ -182,6 +185,29 @@ class BluetoothAdapter extends utils.Adapter {
                 }
             }
         }
+
+        // ── Satellite Manager ────────────────────────────────────────
+        if (cfg.satelliteEnabled) {
+            try {
+                const allowFrom = (cfg.satelliteAllowFrom || []).map(e => e.ip || e).filter(Boolean);
+                this.satelliteMgr = new SatelliteManager({
+                    adapter: this,
+                    port: cfg.satellitePort || 8734,
+                    allowFrom,
+                    log: this.log,
+                });
+
+                this.satelliteMgr.on('deviceFound', (peripheral) => {
+                    this._onSatelliteDeviceFound(peripheral);
+                });
+
+                await this.satelliteMgr.start();
+                this.log.info(`Satellite manager started on port ${cfg.satellitePort || 8734}`);
+            } catch (err) {
+                this.log.error(`Satellite manager failed to start: ${err.message}`);
+                this.satelliteMgr = null;
+            }
+        }
     }
 
     async onUnload(callback) {
@@ -203,6 +229,9 @@ class BluetoothAdapter extends utils.Adapter {
             }
             if (this.map) {
                 this.map.destroy();
+            }
+            if (this.satelliteMgr) {
+                await this.satelliteMgr.stop();
             }
             if (this.deviceMgr) {
                 await this.deviceMgr.destroy();
@@ -1388,6 +1417,59 @@ class BluetoothAdapter extends utils.Adapter {
         } else {
             // Non-interactive methods – clear immediately
             setTimeout(() => clearPending(), 2000);
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────────────
+    //  Satellite device handling
+    // ─────────────────────────────────────────────────────────────────
+
+    /**
+     * Handle a device discovered by a satellite scanner.
+     * Processes it similar to _onDeviceFound but from satellite data.
+     * @param {object} peripheral – normalized peripheral from SatelliteManager
+     */
+    async _onSatelliteDeviceFound(peripheral) {
+        if (this._stopping) return;
+
+        try {
+            const mac = peripheral.address.replace(/:/g, '-').toUpperCase();
+            const devId = mac;
+
+            // Update discovery list
+            const isTransient = peripheral.addressType === 'random';
+            this._discovery.set(peripheral.address.toUpperCase(), {
+                mac: peripheral.address.toUpperCase(),
+                name: peripheral.name || '',
+                rssi: peripheral.rssi ?? null,
+                type: 'ble',
+                paired: false,
+                adopted: this._isAdopted(devId),
+                transient: isTransient,
+                lastSeen: Date.now(),
+                source: peripheral.source,
+            });
+
+            // Only process adopted devices
+            if (!this._isAdopted(devId)) return;
+
+            // Build props compatible with deviceManager
+            const deviceProps = {
+                name: peripheral.name,
+                alias: peripheral.name,
+                rssi: peripheral.rssi,
+                addressType: peripheral.addressType,
+                serviceData: peripheral.serviceData,
+                manufacturerData: peripheral.manufacturerData,
+                type: 'ble',
+                source: peripheral.source,
+            };
+
+            await this.deviceMgr.ensureDeviceObjects(devId, deviceProps);
+            this._processAdvertisementData(devId, deviceProps);
+            this._processBTHome(devId, peripheral.serviceData);
+        } catch (e) {
+            this.log.warn(`Error processing satellite device ${peripheral.address}: ${e.message}`);
         }
     }
 

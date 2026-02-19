@@ -203,6 +203,55 @@
           "hidden": "!data.reconnectEnabled"
         }
       }
+    },
+    "tabSatellites": {
+      "type": "panel",
+      "label": "tabSatellites",
+      "items": {
+        "satelliteEnabled": {
+          "type": "checkbox",
+          "label": "satelliteEnabled",
+          "tooltip": "satelliteEnabledTooltip",
+          "default": false,
+          "sm": 12,
+          "newLine": true
+        },
+        "satellitePort": {
+          "type": "number",
+          "label": "satellitePort",
+          "tooltip": "satellitePortTooltip",
+          "default": 8734,
+          "min": 1024,
+          "max": 65535,
+          "sm": 6,
+          "newLine": true,
+          "hidden": "!data.satelliteEnabled"
+        },
+        "_satelliteInfo": {
+          "type": "staticText",
+          "text": "satelliteInfo",
+          "sm": 12,
+          "style": { "marginTop": 16, "marginBottom": 8 },
+          "hidden": "!data.satelliteEnabled"
+        },
+        "satelliteAllowFrom": {
+          "type": "table",
+          "label": "satelliteAllowFrom",
+          "sm": 12,
+          "hidden": "!data.satelliteEnabled",
+          "items": [
+            {
+              "attr": "ip",
+              "type": "text",
+              "title": "satelliteIp",
+              "width": "100%",
+              "filter": false,
+              "sort": false
+            }
+          ],
+          "default": []
+        }
+      }
     }
   }
 }

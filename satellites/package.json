@@ -1,0 +1,12 @@
+{
+  "name": "iobroker-bluetooth-satellite",
+  "version": "1.0.0",
+  "description": "BLE satellite scanner for ioBroker.bluetooth adapter",
+  "main": "pi-satellite.js",
+  "scripts": {
+    "start": "node pi-satellite.js"
+  },
+  "dependencies": {
+    "@stoprocent/noble": "^1.15.0"
+  }
+}
