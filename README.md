@@ -165,6 +165,27 @@ node -c lib/bleManager.js
 node -c lib/deviceManager.js
 ```
 
+## Changelog
+
+### 0.4.0 (2026-02-19)
+* Added BLE satellite receiver support (Pi + ESP32)
+* Integrated @iobroker/dm-utils for Device Manager
+* Added @iobroker/eslint-config
+* Added i18n translations for all required languages
+
+### 0.3.0
+* BTHome v2 protocol support
+* Advertisement data parsing
+
+### 0.2.0
+* Device allowlist and discovery management
+* Auto-reconnect with exponential backoff
+
+### 0.1.0
+* Initial release
+* BlueZ D-Bus integration
+* Classic + BLE support
+
 ## License
 
 [MIT](LICENSE)

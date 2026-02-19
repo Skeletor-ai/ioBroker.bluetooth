@@ -2,14 +2,31 @@
   "common": {
     "name": "bluetooth",
     "version": "0.4.0",
-    "title": "Bluetooth (Classic + BLE)",
     "titleLang": {
       "en": "Bluetooth (Classic + BLE)",
-      "de": "Bluetooth (Classic + BLE)"
+      "de": "Bluetooth (Classic + BLE)",
+      "ru": "Bluetooth (Классический + BLE)",
+      "pt": "Bluetooth (Clássico + BLE)",
+      "nl": "Bluetooth (Classic + BLE)",
+      "fr": "Bluetooth (Classique + BLE)",
+      "it": "Bluetooth (Classico + BLE)",
+      "es": "Bluetooth (Clásico + BLE)",
+      "pl": "Bluetooth (Klasyczny + BLE)",
+      "uk": "Bluetooth (Класичний + BLE)",
+      "zh-cn": "蓝牙（经典 + BLE）"
     },
     "desc": {
       "en": "Discover, connect, pair and interact with Classic Bluetooth and BLE devices via BlueZ/D-Bus",
-      "de": "Classic Bluetooth und BLE Geräte über BlueZ/D-Bus erkennen, verbinden, pairen und steuern"
+      "de": "Classic Bluetooth und BLE Geräte über BlueZ/D-Bus erkennen, verbinden, pairen und steuern",
+      "ru": "Обнаружение, подключение, сопряжение и взаимодействие с устройствами Classic Bluetooth и BLE через BlueZ/D-Bus",
+      "pt": "Descobrir, conectar, emparelhar e interagir com dispositivos Bluetooth Classic e BLE via BlueZ/D-Bus",
+      "nl": "Ontdek, verbind, koppel en communiceer met Classic Bluetooth en BLE apparaten via BlueZ/D-Bus",
+      "fr": "Découvrir, connecter, appairer et interagir avec les appareils Bluetooth Classic et BLE via BlueZ/D-Bus",
+      "it": "Scopri, connetti, accoppia e interagisci con dispositivi Bluetooth Classic e BLE tramite BlueZ/D-Bus",
+      "es": "Descubrir, conectar, emparejar e interactuar con dispositivos Bluetooth Classic y BLE a través de BlueZ/D-Bus",
+      "pl": "Wykrywanie, łączenie, parowanie i interakcja z urządzeniami Classic Bluetooth i BLE przez BlueZ/D-Bus",
+      "uk": "Виявлення, підключення, спарювання та взаємодія з пристроями Classic Bluetooth та BLE через BlueZ/D-Bus",
+      "zh-cn": "通过BlueZ/D-Bus发现、连接、配对经典蓝牙和BLE设备并与之交互"
     },
     "authors": [
       "Clawdbot <dev@clawdbot.local>"
@@ -25,12 +42,16 @@
       "IoT"
     ],
     "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "tier": 2,
     "platform": "Javascript/Node.js",
-    "main": "main.js",
     "icon": "bluetooth.png",
+    "extIcon": "https://raw.githubusercontent.com/Skeletor-ai/ioBroker.bluetooth/main/admin/bluetooth.png",
     "enabled": true,
-    "extIcon": "",
-    "readme": "https://github.com/clawdbot/ioBroker.bluetooth/blob/main/README.md",
+    "readme": "https://github.com/Skeletor-ai/ioBroker.bluetooth/blob/main/README.md",
     "loglevel": "info",
     "mode": "daemon",
     "type": "hardware",
@@ -46,15 +67,28 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=5.0.0"
+        "js-controller": ">=5.0.19"
       }
     ],
     "globalDependencies": [
       {
-        "admin": ">=6.0.0"
+        "admin": ">=6.17.14"
       }
     ],
     "news": {
+      "0.4.0": {
+        "en": "Added BLE satellite support (Pi + ESP32), dm-utils integration, ESLint",
+        "de": "BLE-Satellite-Unterstützung (Pi + ESP32), dm-utils Integration, ESLint hinzugefügt",
+        "ru": "Добавлена поддержка BLE-сателлитов (Pi + ESP32), интеграция dm-utils, ESLint",
+        "pt": "Adicionado suporte a satélites BLE (Pi + ESP32), integração dm-utils, ESLint",
+        "nl": "BLE-satellietondersteuning toegevoegd (Pi + ESP32), dm-utils-integratie, ESLint",
+        "fr": "Ajout du support satellite BLE (Pi + ESP32), intégration dm-utils, ESLint",
+        "it": "Aggiunto supporto satelliti BLE (Pi + ESP32), integrazione dm-utils, ESLint",
+        "es": "Añadido soporte de satélites BLE (Pi + ESP32), integración dm-utils, ESLint",
+        "pl": "Dodano obsługę satelitów BLE (Pi + ESP32), integrację dm-utils, ESLint",
+        "uk": "Додано підтримку BLE-супутників (Pi + ESP32), інтеграцію dm-utils, ESLint",
+        "zh-cn": "添加BLE卫星支持（Pi + ESP32），dm-utils集成，ESLint"
+      },
       "0.2.0": {
         "en": "Major rewrite: replaced Noble with BlueZ/D-Bus – now supports Classic Bluetooth and BLE, device pairing, trust, connect/disconnect actions",
         "de": "Großer Umbau: Noble durch BlueZ/D-Bus ersetzt – unterstützt jetzt Classic Bluetooth und BLE, Geräte-Pairing, Trust, Connect/Disconnect-Aktionen"

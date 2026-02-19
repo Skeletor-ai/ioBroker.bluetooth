@@ -11,7 +11,8 @@
           "text": "discoverHeader",
           "size": 4,
           "sm": 12,
-          "newLine": true
+          "newLine": true,
+          "xs": 12
         },
         "_infoDiscover": {
           "type": "staticText",
@@ -19,7 +20,8 @@
           "sm": 12,
           "style": {
             "marginBottom": 12
-          }
+          },
+          "xs": 12
         },
         "_deviceSelect": {
           "type": "selectSendTo",
@@ -30,7 +32,8 @@
           "noTranslation": true,
           "alsoDependsOn": [
             "allowlist"
-          ]
+          ],
+          "xs": 12
         },
         "_addSelected": {
           "type": "sendTo",
@@ -42,7 +45,8 @@
           "useNative": true,
           "showProcess": true,
           "sm": 4,
-          "newLine": false
+          "newLine": false,
+          "xs": 12
         },
         "_divider1": {
           "type": "divider",
@@ -50,14 +54,16 @@
           "style": {
             "marginTop": 16,
             "marginBottom": 16
-          }
+          },
+          "xs": 12
         },
         "_headerAllowlist": {
           "type": "header",
           "text": "allowlistHeader",
           "size": 4,
           "sm": 12,
-          "newLine": true
+          "newLine": true,
+          "xs": 12
         },
         "_infoAllowlist": {
           "type": "staticText",
@@ -65,7 +71,8 @@
           "sm": 12,
           "style": {
             "marginBottom": 8
-          }
+          },
+          "xs": 12
         },
         "allowlist": {
           "type": "table",
@@ -121,7 +128,8 @@
               "sort": false
             }
           ],
-          "default": []
+          "default": [],
+          "xs": 12
         }
       }
     },
@@ -137,7 +145,8 @@
           "min": 0,
           "max": 9,
           "sm": 6,
-          "newLine": true
+          "newLine": true,
+          "xs": 12
         },
         "transport": {
           "type": "select",
@@ -158,7 +167,8 @@
               "value": "bredr"
             }
           ],
-          "sm": 6
+          "sm": 6,
+          "xs": 12
         },
         "autoConnect": {
           "type": "checkbox",
@@ -166,7 +176,8 @@
           "tooltip": "autoConnectTooltip",
           "default": true,
           "sm": 12,
-          "newLine": true
+          "newLine": true,
+          "xs": 12
         }
       }
     },
@@ -179,7 +190,8 @@
           "label": "reconnectEnabled",
           "default": true,
           "sm": 12,
-          "newLine": true
+          "newLine": true,
+          "xs": 12
         },
         "reconnectBaseDelay": {
           "type": "number",
@@ -190,7 +202,8 @@
           "max": 60,
           "sm": 6,
           "newLine": true,
-          "hidden": "!data.reconnectEnabled"
+          "hidden": "!data.reconnectEnabled",
+          "xs": 12
         },
         "reconnectMaxDelay": {
           "type": "number",
@@ -200,7 +213,8 @@
           "min": 10,
           "max": 3600,
           "sm": 6,
-          "hidden": "!data.reconnectEnabled"
+          "hidden": "!data.reconnectEnabled",
+          "xs": 12
         }
       }
     },
@@ -214,7 +228,8 @@
           "tooltip": "satelliteEnabledTooltip",
           "default": false,
           "sm": 12,
-          "newLine": true
+          "newLine": true,
+          "xs": 12
         },
         "satellitePort": {
           "type": "number",
@@ -225,14 +240,19 @@
           "max": 65535,
           "sm": 6,
           "newLine": true,
-          "hidden": "!data.satelliteEnabled"
+          "hidden": "!data.satelliteEnabled",
+          "xs": 12
         },
         "_satelliteInfo": {
           "type": "staticText",
           "text": "satelliteInfo",
           "sm": 12,
-          "style": { "marginTop": 16, "marginBottom": 8 },
-          "hidden": "!data.satelliteEnabled"
+          "style": {
+            "marginTop": 16,
+            "marginBottom": 8
+          },
+          "hidden": "!data.satelliteEnabled",
+          "xs": 12
         },
         "satelliteAllowFrom": {
           "type": "table",
@@ -249,7 +269,8 @@
               "sort": false
             }
           ],
-          "default": []
+          "default": [],
+          "xs": 12
         }
       }
     }
