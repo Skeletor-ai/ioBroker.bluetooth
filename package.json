@@ -37,7 +37,8 @@
     "usocket": "^1.0.2"
   },
   "devDependencies": {
-    "@iobroker/dev-server": "^0.8.0"
+    "@iobroker/dev-server": "^0.8.0",
+    "@iobroker/eslint-config": "^2.2.0"
   },
   "main": "main.js",
   "files": [
@@ -50,7 +51,7 @@
   ],
   "scripts": {
     "test": "echo \"No tests yet\" && exit 0",
-    "lint": "echo \"No linter configured\" && exit 0"
+    "lint": "eslint ."
   },
   "bugs": {
     "url": "https://github.com/Skeletor-ai/ioBroker.bluetooth/issues"
