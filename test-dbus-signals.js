@@ -1,5 +1,5 @@
 'use strict';
-const dbus = require('dbus-next');
+const dbus = require('@deltachat/dbus-next');
 const Message = dbus.Message;
 
 async function main() {

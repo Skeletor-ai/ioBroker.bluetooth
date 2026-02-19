@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "bluetooth",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "title": "Bluetooth (Classic + BLE)",
     "titleLang": {
       "en": "Bluetooth (Classic + BLE)",

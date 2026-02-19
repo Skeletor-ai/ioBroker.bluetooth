@@ -1,6 +1,6 @@
 {
   "name": "iobroker.bluetooth",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Bluetooth adapter for ioBroker – discover, connect, pair and interact with Classic Bluetooth and BLE devices via BlueZ/D-Bus",
   "author": {
     "name": "Skeletor-ai",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.2.6",
-    "dbus-next": "^0.10.2",
+    "@deltachat/dbus-next": "^1.0.1",
     "usocket": "^1.0.2"
   },
   "devDependencies": {

@@ -744,7 +744,7 @@ class BluetoothAdapter extends utils.Adapter {
                     try {
                         const proxy = await this.bluez._bus.getProxyObject('org.bluez', devicePath);
                         const props = proxy.getInterface('org.freedesktop.DBus.Properties');
-                        await props.Set('org.bluez.Device1', 'Trusted', new (require('dbus-next')).Variant('b', true));
+                        await props.Set('org.bluez.Device1', 'Trusted', new (require('@deltachat/dbus-next')).Variant('b', true));
                     } catch (e) { this.log.debug(`Trust set failed: ${e.message}`); }
                     // Connect the device (establishes all profiles)
                     const device = this.bluez.getDevice(mac);
