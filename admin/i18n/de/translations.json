@@ -28,16 +28,5 @@
   "reconnectBaseDelay": "Basis-Verzögerung (Sekunden)",
   "reconnectBaseDelayTooltip": "Anfängliche Reconnect-Verzögerung – verdoppelt sich mit jedem Versuch",
   "reconnectMaxDelay": "Maximale Verzögerung (Sekunden)",
-  "reconnectMaxDelayTooltip": "Maximale Zeit zwischen Reconnect-Versuchen",
-  "tabShelly": "Shelly Gateway",
-  "shellyHeader": "Shelly BLE Gateway",
-  "shellyInfo": "Shelly Gen2+ Geräte als BLE-Gateways nutzen. Shellys scannen BLE-Advertisements und leiten sie per MQTT weiter. Funktioniert parallel zu lokalem BlueZ.",
-  "shellyEnabled": "Shelly BLE Gateway aktivieren",
-  "mqttHeader": "MQTT-Verbindung",
-  "mqttHost": "MQTT-Broker Host",
-  "mqttPort": "MQTT-Broker Port",
-  "mqttUser": "MQTT-Benutzername",
-  "mqttPassword": "MQTT-Passwort",
-  "mqttTopic": "MQTT-Topic-Muster",
-  "mqttTopicTooltip": "Topic-Muster für Shelly BLE-Events. Verwende + als Platzhalter für die Shelly-ID."
+  "reconnectMaxDelayTooltip": "Maximale Zeit zwischen Reconnect-Versuchen"
 }

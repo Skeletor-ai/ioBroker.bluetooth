@@ -17,7 +17,9 @@
           "type": "staticText",
           "text": "discoverInfo",
           "sm": 12,
-          "style": { "marginBottom": 12 }
+          "style": {
+            "marginBottom": 12
+          }
         },
         "_deviceSelect": {
           "type": "selectSendTo",
@@ -26,7 +28,9 @@
           "sm": 8,
           "newLine": true,
           "noTranslation": true,
-          "alsoDependsOn": ["allowlist"]
+          "alsoDependsOn": [
+            "allowlist"
+          ]
         },
         "_addSelected": {
           "type": "sendTo",
@@ -43,7 +47,10 @@
         "_divider1": {
           "type": "divider",
           "sm": 12,
-          "style": { "marginTop": 16, "marginBottom": 16 }
+          "style": {
+            "marginTop": 16,
+            "marginBottom": 16
+          }
         },
         "_headerAllowlist": {
           "type": "header",
@@ -56,7 +63,9 @@
           "type": "staticText",
           "text": "allowlistInfo",
           "sm": 12,
-          "style": { "marginBottom": 8 }
+          "style": {
+            "marginBottom": 8
+          }
         },
         "allowlist": {
           "type": "table",
@@ -85,9 +94,18 @@
               "title": "deviceType",
               "width": "15%",
               "options": [
-                { "label": "typeAuto", "value": "auto" },
-                { "label": "typeClassic", "value": "classic" },
-                { "label": "typeBLE", "value": "ble" }
+                {
+                  "label": "typeAuto",
+                  "value": "auto"
+                },
+                {
+                  "label": "typeClassic",
+                  "value": "classic"
+                },
+                {
+                  "label": "typeBLE",
+                  "value": "ble"
+                }
               ],
               "default": "auto",
               "filter": false,
@@ -127,9 +145,18 @@
           "tooltip": "transportTooltip",
           "default": "auto",
           "options": [
-            { "label": "transportAuto", "value": "auto" },
-            { "label": "transportLE", "value": "le" },
-            { "label": "transportBREDR", "value": "bredr" }
+            {
+              "label": "transportAuto",
+              "value": "auto"
+            },
+            {
+              "label": "transportLE",
+              "value": "le"
+            },
+            {
+              "label": "transportBREDR",
+              "value": "bredr"
+            }
           ],
           "sm": 6
         },
@@ -174,87 +201,6 @@
           "max": 3600,
           "sm": 6,
           "hidden": "!data.reconnectEnabled"
-        }
-      }
-    },
-    "tabShelly": {
-      "type": "panel",
-      "label": "tabShelly",
-      "items": {
-        "_headerShelly": {
-          "type": "header",
-          "text": "shellyHeader",
-          "size": 4,
-          "sm": 12,
-          "newLine": true
-        },
-        "_infoShelly": {
-          "type": "staticText",
-          "text": "shellyInfo",
-          "sm": 12,
-          "style": { "marginBottom": 12 }
-        },
-        "shellyGateway.enabled": {
-          "type": "checkbox",
-          "label": "shellyEnabled",
-          "default": false,
-          "sm": 12,
-          "newLine": true
-        },
-        "_dividerMqtt": {
-          "type": "divider",
-          "sm": 12,
-          "style": { "marginTop": 12, "marginBottom": 12 },
-          "hidden": "!data['shellyGateway.enabled']"
-        },
-        "_headerMqtt": {
-          "type": "header",
-          "text": "mqttHeader",
-          "size": 5,
-          "sm": 12,
-          "newLine": true,
-          "hidden": "!data['shellyGateway.enabled']"
-        },
-        "shellyGateway.mqttHost": {
-          "type": "text",
-          "label": "mqttHost",
-          "default": "localhost",
-          "sm": 6,
-          "newLine": true,
-          "hidden": "!data['shellyGateway.enabled']"
-        },
-        "shellyGateway.mqttPort": {
-          "type": "number",
-          "label": "mqttPort",
-          "default": 1883,
-          "min": 1,
-          "max": 65535,
-          "sm": 6,
-          "hidden": "!data['shellyGateway.enabled']"
-        },
-        "shellyGateway.mqttUser": {
-          "type": "text",
-          "label": "mqttUser",
-          "default": "",
-          "sm": 6,
-          "newLine": true,
-          "hidden": "!data['shellyGateway.enabled']"
-        },
-        "shellyGateway.mqttPassword": {
-          "type": "password",
-          "label": "mqttPassword",
-          "default": "",
-          "sm": 6,
-          "hidden": "!data['shellyGateway.enabled']"
-        },
-        "shellyGateway.mqttTopic": {
-          "type": "text",
-          "label": "mqttTopic",
-          "tooltip": "mqttTopicTooltip",
-          "default": "shelly/+/events/rpc",
-          "sm": 12,
-          "newLine": true,
-          "hidden": "!data['shellyGateway.enabled']"
         }
       }
     }

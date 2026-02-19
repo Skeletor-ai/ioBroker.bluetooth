@@ -8,7 +8,6 @@ const AvrcpController = require('./lib/avrcpController');
 const MapClient = require('./lib/mapClient');
 const { parseAdvertisement } = require('./lib/advertisementParser');
 const { parseBTHome, findBTHomeData } = require('./lib/bthomeParser');
-const ShellyGateway = require('./lib/shellyGateway');
 
 /**
  * ioBroker.bluetooth – Bluetooth adapter (Classic + BLE via BlueZ/D-Bus)
@@ -32,16 +31,7 @@ class BluetoothAdapter extends utils.Adapter {
         this.avrcp = null;
         /** @type {MapClient|null} */
         this.map = null;
-        /** @type {ShellyGateway|null} */
-        this.shellyGw = null;
-
         this._stopping = false;
-
-        /**
-         * Track which source(s) have seen each device: 'bluez', 'shelly:<id>', or both.
-         * @type {Map<string, Set<string>>}
-         */
-        this._deviceSources = new Map();
 
         /** MAC → reconnect state */
         this._reconnect = new Map();
@@ -174,21 +164,6 @@ class BluetoothAdapter extends utils.Adapter {
             this.map = null;
         }
 
-        // ── Shelly BLE Gateway (parallel to BlueZ) ─────────────────
-        const shellyCfg = cfg.shellyGateway || {};
-        if (shellyCfg.enabled) {
-            try {
-                this.shellyGw = new ShellyGateway({ config: shellyCfg, log: this.log });
-                this.shellyGw.on('deviceFound', (event) => this._onShellyDeviceFound(event));
-                this.shellyGw.on('error', (err) => this.log.warn(`ShellyGateway error: ${err.message}`));
-                await this.shellyGw.start();
-                this.log.info('Shelly BLE Gateway started');
-            } catch (err) {
-                this.log.warn(`Shelly BLE Gateway failed to start: ${err.message}`);
-                this.shellyGw = null;
-            }
-        }
-
         // Subscribe to all state changes under our namespace
         this.subscribeStates('*');
 
@@ -220,9 +195,6 @@ class BluetoothAdapter extends utils.Adapter {
             }
             this._reconnect.clear();
 
-            if (this.shellyGw) {
-                await this.shellyGw.stop();
-            }
             if (this.hfp) {
                 await this.hfp.unregister();
             }
@@ -677,12 +649,6 @@ class BluetoothAdapter extends utils.Adapter {
                 lastSeen: Date.now(),
             });
 
-            // Track source
-            if (!this._deviceSources.has(devId)) {
-                this._deviceSources.set(devId, new Set());
-            }
-            this._deviceSources.get(devId).add('bluez');
-
             // Auto-adopt paired devices on discovery
             if (deviceProps.paired && !this._adopted.has(devId)) {
                 this.log.info(`Auto-adopting paired device: ${devId} (${deviceProps.name || 'unnamed'})`);
@@ -849,114 +815,6 @@ class BluetoothAdapter extends utils.Adapter {
             await this.setStateAsync(`${devId}.info.connected`, { val: false, ack: true });
             await this.setStateAsync(`${devId}.info.paired`, { val: false, ack: true });
         } catch (_) { /* states may not exist */ }
-    }
-
-    // ─────────────────────────────────────────────────────────────────
-    //  Shelly BLE Gateway events
-    // ─────────────────────────────────────────────────────────────────
-
-    /**
-     * Handle a BLE device discovered via Shelly gateway.
-     * @param {{mac: string, name: string|null, rssi: number|null, source: string,
-     *          serviceData: Array, manufacturerData: object|null, txPower: number|null,
-     *          bthome: object|null}} event
-     */
-    async _onShellyDeviceFound(event) {
-        if (this._stopping) return;
-
-        try {
-            const devId = event.mac.replace(/:/g, '-').toUpperCase();
-
-            // Track source
-            if (!this._deviceSources.has(devId)) {
-                this._deviceSources.set(devId, new Set());
-            }
-            this._deviceSources.get(devId).add(`shelly:${event.source}`);
-
-            // Update discovery list
-            this._discovery.set(event.mac, {
-                mac: event.mac,
-                name: event.name || '',
-                rssi: event.rssi,
-                type: 'le',
-                paired: false,
-                adopted: this._isAdopted(devId),
-                transient: false,
-                lastSeen: Date.now(),
-            });
-
-            // Only create objects for adopted devices
-            if (!this._isAdopted(devId)) return;
-
-            // Ensure device objects exist
-            await this.deviceMgr.ensureDeviceObjects(devId, {
-                name: event.name || '',
-                rssi: event.rssi,
-                connected: false,
-                type: 'le',
-            });
-
-            // Update dynamic states
-            await this.deviceMgr.updateDeviceStates(devId, {
-                rssi: event.rssi,
-                name: event.name,
-            });
-
-            // Update source state
-            await this._updateSourceState(devId);
-
-            // Process BTHome data if present
-            if (event.bthome && event.bthome.values && event.bthome.values.length > 0) {
-                await this.deviceMgr.ensureBTHomeObjects(devId, event.bthome.values);
-            }
-
-            // Process manufacturer data
-            if (event.manufacturerData) {
-                const mfrHex = event.manufacturerData.data.toString('hex');
-                const companyId = event.manufacturerData.companyId;
-                await this.setStateAsync(`${devId}.info.manufacturerData`, {
-                    val: `0x${companyId.toString(16).padStart(4, '0')}: ${mfrHex}`,
-                    ack: true,
-                });
-            }
-
-            // Update service data
-            if (event.serviceData && event.serviceData.length > 0) {
-                const sdJson = event.serviceData.map(sd => ({
-                    uuid: sd.uuid,
-                    data: sd.data.toString('hex'),
-                }));
-                await this.setStateAsync(`${devId}.info.serviceData`, {
-                    val: JSON.stringify(sdJson),
-                    ack: true,
-                });
-            }
-        } catch (e) {
-            this.log.warn(`ShellyGateway: error processing ${event.mac}: ${e.message}`);
-        }
-    }
-
-    /**
-     * Update the info.source state for a device.
-     * @param {string} devId
-     */
-    async _updateSourceState(devId) {
-        const sources = this._deviceSources.get(devId);
-        if (!sources) return;
-
-        const stateId = `${devId}.info.source`;
-        await this.setObjectNotExistsAsync(stateId, {
-            type: 'state',
-            common: {
-                name: 'Discovery source',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: false,
-            },
-            native: {},
-        });
-        await this.setStateAsync(stateId, { val: [...sources].join(', '), ack: true });
     }
 
     // ─────────────────────────────────────────────────────────────────
