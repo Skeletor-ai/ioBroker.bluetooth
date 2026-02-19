@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "bluetooth",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "title": "Bluetooth (Classic + BLE)",
     "titleLang": {
       "en": "Bluetooth (Classic + BLE)",
@@ -53,6 +53,10 @@
       }
     ],
     "news": {
+      "0.4.0": {
+        "en": "Added Shelly BLE Gateway transport – receive BLE data from Shelly Gen2+ devices via MQTT, works in parallel with BlueZ",
+        "de": "Shelly BLE Gateway Transport hinzugefügt – BLE-Daten von Shelly Gen2+ Geräten per MQTT empfangen, funktioniert parallel zu BlueZ"
+      },
       "0.2.0": {
         "en": "Major rewrite: replaced Noble with BlueZ/D-Bus – now supports Classic Bluetooth and BLE, device pairing, trust, connect/disconnect actions",
         "de": "Großer Umbau: Noble durch BlueZ/D-Bus ersetzt – unterstützt jetzt Classic Bluetooth und BLE, Geräte-Pairing, Trust, Connect/Disconnect-Aktionen"
@@ -70,7 +74,15 @@
     "autoConnect": true,
     "reconnectEnabled": true,
     "reconnectBaseDelay": 5,
-    "reconnectMaxDelay": 300
+    "reconnectMaxDelay": 300,
+    "shellyGateway": {
+      "enabled": false,
+      "mqttHost": "localhost",
+      "mqttPort": 1883,
+      "mqttUser": "",
+      "mqttPassword": "",
+      "mqttTopic": "shelly/+/events/rpc"
+    }
   },
   "objects": [],
   "instanceObjects": []

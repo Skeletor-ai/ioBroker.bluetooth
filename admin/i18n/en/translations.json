@@ -2,24 +2,19 @@
   "tabScan": "Bluetooth Settings",
   "tabDevices": "Devices",
   "tabReconnect": "Reconnect",
-
   "hciDevice": "HCI Device Index",
   "hciDeviceTooltip": "Bluetooth adapter index (0 = /dev/hci0)",
-
   "transport": "Transport Mode",
   "transportTooltip": "Which Bluetooth transport to use for scanning. 'Auto' scans both Classic and BLE devices.",
   "transportAuto": "Auto (Classic + BLE)",
   "transportLE": "BLE only",
   "transportBREDR": "Classic only (BR/EDR)",
-
   "autoConnect": "Auto-connect",
   "autoConnectTooltip": "When enabled, automatically connects to devices in the allowlist.",
-
   "discoverHeader": "Add Device",
   "discoverInfo": "Select a discovered Bluetooth device from the dropdown and click 'Add'. Paired devices are detected automatically.",
   "selectDevice": "Select device",
   "addDevice": "Add",
-
   "allowlistHeader": "Device List",
   "allowlistInfo": "Managed Bluetooth devices. Only devices in this list get ioBroker objects and are monitored.",
   "macAddress": "MAC Address",
@@ -29,10 +24,20 @@
   "typeClassic": "Classic",
   "typeBLE": "BLE",
   "autoConnectCol": "Auto-Connect",
-
   "reconnectEnabled": "Enable automatic reconnect",
   "reconnectBaseDelay": "Base delay (seconds)",
   "reconnectBaseDelayTooltip": "Initial reconnect delay — doubles with each attempt",
   "reconnectMaxDelay": "Maximum delay (seconds)",
-  "reconnectMaxDelayTooltip": "Maximum time between reconnect attempts"
+  "reconnectMaxDelayTooltip": "Maximum time between reconnect attempts",
+  "tabShelly": "Shelly Gateway",
+  "shellyHeader": "Shelly BLE Gateway",
+  "shellyInfo": "Use Shelly Gen2+ devices as BLE gateways. Shellys scan BLE advertisements and forward them via MQTT. Works in parallel with local BlueZ.",
+  "shellyEnabled": "Enable Shelly BLE Gateway",
+  "mqttHeader": "MQTT Connection",
+  "mqttHost": "MQTT Broker Host",
+  "mqttPort": "MQTT Broker Port",
+  "mqttUser": "MQTT Username",
+  "mqttPassword": "MQTT Password",
+  "mqttTopic": "MQTT Topic Pattern",
+  "mqttTopicTooltip": "Topic pattern for Shelly BLE events. Use + as wildcard for the Shelly ID."
 }
