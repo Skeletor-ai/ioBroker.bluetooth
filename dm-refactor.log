@@ -1,0 +1,29 @@
+2026-02-19 18:08 - dm-utils refactor complete
+
+## Changes made:
+
+### 1. npm install @iobroker/dm-utils
+- Package installed and added to package.json dependencies
+
+### 2. lib/bluetoothDeviceManagement.js (NEW)
+- DeviceManagement subclass with all required methods:
+  - listDevices(): Returns adopted + discovered devices with connect/disconnect/pair/unpair/remove actions
+  - getInstanceInfo(): apiVersion v1, scan + allowNewDevices actions
+  - handleInstanceAction(): Toggle discovery scan
+  - handleDeviceAction(): connect, disconnect, pair, unpair, remove (with confirmation)
+  - getDeviceDetails(): JsonFormSchema panel with device info, signal, connection status, advertisement data
+
+### 3. main.js integration
+- Imported BluetoothDeviceManagement
+- Instantiated as `this.dm` in constructor (auto-registers message listener)
+- Added `dm:` command filter in onMessage to avoid double-handling
+
+### 4. io-package.json
+- Added `"supportedMessages": { "deviceManager": true }` to common section
+
+### 5. Existing deviceManager.js preserved (untouched)
+
+### 6. Validation
+- node -c syntax check: PASS (main.js, bluetoothDeviceManagement.js)
+- io-package.json JSON parse: PASS
+- Module load test: PASS (all 5 prototype methods present)

@@ -9,6 +9,7 @@ const MapClient = require('./lib/mapClient');
 const { parseAdvertisement } = require('./lib/advertisementParser');
 const { parseBTHome, findBTHomeData } = require('./lib/bthomeParser');
 const SatelliteManager = require('./lib/satelliteManager');
+const BluetoothDeviceManagement = require('./lib/bluetoothDeviceManagement');
 
 /**
  * ioBroker.bluetooth – Bluetooth adapter (Classic + BLE via BlueZ/D-Bus)
@@ -34,6 +35,8 @@ class BluetoothAdapter extends utils.Adapter {
         this.map = null;
         /** @type {SatelliteManager|null} */
         this.satelliteMgr = null;
+        /** @type {BluetoothDeviceManagement} dm-utils Device Manager bridge */
+        this.dm = new BluetoothDeviceManagement(this);
         this._stopping = false;
 
         /** MAC → reconnect state */
@@ -258,6 +261,8 @@ class BluetoothAdapter extends utils.Adapter {
      */
     async onMessage(msg) {
         if (!msg || !msg.command) return;
+        // dm-utils handles dm:* commands via its own message listener
+        if (msg.command.startsWith('dm:')) return;
 
         switch (msg.command) {
             case 'getDiscoveredDevices': {

@@ -36,6 +36,9 @@
     "type": "hardware",
     "compact": true,
     "messagebox": true,
+    "supportedMessages": {
+      "deviceManager": true
+    },
     "connectionType": "local",
     "dataSource": "push",
     "adminUI": {
