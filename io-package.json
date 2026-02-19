@@ -41,7 +41,6 @@
       "BTHome",
       "IoT"
     ],
-    "license": "MIT",
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
@@ -116,7 +115,9 @@
     {
       "_id": "satellites",
       "type": "channel",
-      "common": { "name": "BLE Satellites" },
+      "common": {
+        "name": "BLE Satellites"
+      },
       "native": {}
     }
   ]

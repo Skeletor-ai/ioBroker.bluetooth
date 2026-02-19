@@ -12,7 +12,10 @@
           "size": 4,
           "sm": 12,
           "newLine": true,
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_infoDiscover": {
           "type": "staticText",
@@ -21,7 +24,10 @@
           "style": {
             "marginBottom": 12
           },
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_deviceSelect": {
           "type": "selectSendTo",
@@ -33,7 +39,10 @@
           "alsoDependsOn": [
             "allowlist"
           ],
-          "xs": 12
+          "xs": 12,
+          "md": 8,
+          "lg": 8,
+          "xl": 8
         },
         "_addSelected": {
           "type": "sendTo",
@@ -46,7 +55,10 @@
           "showProcess": true,
           "sm": 4,
           "newLine": false,
-          "xs": 12
+          "xs": 12,
+          "md": 4,
+          "lg": 4,
+          "xl": 4
         },
         "_divider1": {
           "type": "divider",
@@ -55,7 +67,10 @@
             "marginTop": 16,
             "marginBottom": 16
           },
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_headerAllowlist": {
           "type": "header",
@@ -63,7 +78,10 @@
           "size": 4,
           "sm": 12,
           "newLine": true,
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "_infoAllowlist": {
           "type": "staticText",
@@ -72,7 +90,10 @@
           "style": {
             "marginBottom": 8
           },
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "allowlist": {
           "type": "table",
@@ -129,7 +150,10 @@
             }
           ],
           "default": [],
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     },
@@ -146,7 +170,10 @@
           "max": 9,
           "sm": 6,
           "newLine": true,
-          "xs": 12
+          "xs": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         },
         "transport": {
           "type": "select",
@@ -168,7 +195,10 @@
             }
           ],
           "sm": 6,
-          "xs": 12
+          "xs": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         },
         "autoConnect": {
           "type": "checkbox",
@@ -177,7 +207,10 @@
           "default": true,
           "sm": 12,
           "newLine": true,
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     },
@@ -191,7 +224,10 @@
           "default": true,
           "sm": 12,
           "newLine": true,
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "reconnectBaseDelay": {
           "type": "number",
@@ -203,7 +239,10 @@
           "sm": 6,
           "newLine": true,
           "hidden": "!data.reconnectEnabled",
-          "xs": 12
+          "xs": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         },
         "reconnectMaxDelay": {
           "type": "number",
@@ -214,7 +253,10 @@
           "max": 3600,
           "sm": 6,
           "hidden": "!data.reconnectEnabled",
-          "xs": 12
+          "xs": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         }
       }
     },
@@ -229,7 +271,10 @@
           "default": false,
           "sm": 12,
           "newLine": true,
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "satellitePort": {
           "type": "number",
@@ -241,7 +286,10 @@
           "sm": 6,
           "newLine": true,
           "hidden": "!data.satelliteEnabled",
-          "xs": 12
+          "xs": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
         },
         "_satelliteInfo": {
           "type": "staticText",
@@ -252,7 +300,10 @@
             "marginBottom": 8
           },
           "hidden": "!data.satelliteEnabled",
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         },
         "satelliteAllowFrom": {
           "type": "table",
@@ -270,7 +321,10 @@
             }
           ],
           "default": [],
-          "xs": 12
+          "xs": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
         }
       }
     }

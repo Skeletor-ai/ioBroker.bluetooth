@@ -1,0 +1,22 @@
+2026-02-19 19:19 - Repo-Checker Fix Log
+========================================
+
+[DONE] E5010 - i18n translations: Created translations for ru, pt, nl, fr, it, es, pl, uk, zh-cn (+ updated de)
+[DONE] E1105 - common.tier: Added tier: 2
+[DONE] E1105 - common.licenseInformation: Added license: MIT, type: free
+[DONE] E1011 - common.extIcon: Set to GitHub raw URL + created placeholder bluetooth.png
+[DONE] E1036 - common.news: Added 0.4.0 news in all 11 languages
+[DONE] E1057 - dependencies: js-controller >=5.0.19, admin >=6.17.14
+[DONE] W1084 - Removed deprecated "main" and "title" from io-package.json common
+[DONE] W1084 - Added titleLang + desc translations for all languages
+[DONE] E0035 - Added @iobroker/testing devDependency
+[DONE] W0028 - Set engines.node to >=20
+[DONE] W0034 - Updated @iobroker/adapter-core to latest
+[DONE] E5507 - Added xs:12 to all jsonConfig elements
+[DONE] E6003 - Added changelog to README.md
+[DONE] S9006 - Added .commitinfo to .gitignore
+[SKIP] E8002 - GitHub Topics: Requires GitHub API/browser, cannot fix automatically
+
+All JSON files validated OK.
+All JS files syntax-checked OK.
+Committed and pushed: fd249aa
